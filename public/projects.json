@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Project name 1",
+        "created_by": "username",
+        "registered": false,
+        "annotations_count": 5
+    },
+    {
+        "id": 2,
+        "name": "Project name 2",
+        "created_by": "username",
+        "registered": false,
+        "annotations_count": 5
+    },
+    {
+        "id": 3,
+        "name": "Project name 3",
+        "created_by": "username",
+        "registered": true,
+        "annotations_count": 5
+    },
+    {
+        "id": 4,
+        "name": "Project name 4",
+        "created_by": "username",
+        "registered": false,
+        "annotations_count": 5
+    },
+    {
+        "id": 5,
+        "name": "Project name 5",
+        "created_by": "username",
+        "registered": true,
+        "annotations_count": 5
+    }
+]

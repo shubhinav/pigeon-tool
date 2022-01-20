@@ -4,8 +4,11 @@ import { Icon } from '@iconify/react';
 export default function Header() {
     return (
         <header className="px-4 py-3 main-header d-flex justify-content-between align-items-center" style={{backgroundColor: "#D8D8D8"}}>
-            <h3>LOGO</h3>
-            <h3>ToolName</h3>
+            <div>
+            <h3 className="mb-0">Logo</h3>
+            <p className="m-0" style={{fontSize: "0.9rem"}}>Powered by name</p>
+            </div>
+            <h4>ToolName</h4>
             <div className="btn-group">
                 <button type="button" style={{background: "transparent"}} className="btn d-flex justify-content-between align-items-center dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <Icon icon="ant-design:user-outlined" /> 

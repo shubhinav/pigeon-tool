@@ -1,0 +1,8 @@
+.project-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid gainsboro;
+    padding: 1em;
+    margin: 1.5em 0;
+}
