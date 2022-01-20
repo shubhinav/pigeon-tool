@@ -6,13 +6,13 @@ export default function Navbar() {
     return (
         <ul className="nav border-bottom">
             <li className="nav-item">
-                <Link className="nav-link" to="/dashboard/projects">Projects</Link>
+                <Link className="nav-link" to="projects">Projects</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="/dashboard/tasks">Tasks</Link>
+                <Link className="nav-link" to="tasks">Tasks</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="/dashboard/manage">Manage</Link>
+                <Link className="nav-link" to="manage">Manage</Link>
             </li>
         </ul>
     )

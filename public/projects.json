@@ -33,5 +33,40 @@
         "created_by": "username",
         "registered": true,
         "annotations_count": 5
+    },
+    {
+        "id": 6,
+        "name": "Project name 5",
+        "created_by": "username",
+        "registered": false,
+        "annotations_count": 5
+    },
+    {
+        "id": 7,
+        "name": "Project name 5",
+        "created_by": "username",
+        "registered": false,
+        "annotations_count": 5
+    },
+    {
+        "id": 8,
+        "name": "Project name 5",
+        "created_by": "username",
+        "registered": true,
+        "annotations_count": 1000
+    },
+    {
+        "id": 9,
+        "name": "Project name 5",
+        "created_by": "username",
+        "registered": false,
+        "annotations_count": 5
+    },
+    {
+        "id": 10,
+        "name": "Project name 5",
+        "created_by": "username",
+        "registered": false,
+        "annotations_count": 5
     }
 ]
