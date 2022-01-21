@@ -80,7 +80,7 @@ export default function CreateProjectForm() {
                     onChange={handleChange}
                     required />
             </div>
-            <button style={{ display: "block" }} type="submit" className="mx-auto mt-2 btn btn-primary">
+            <button style={{ display: "block", width: "50%", minWidth: "200px" }} type="submit" className="mx-auto mt-4 btn btn-primary">
                 Create Project
             </button>
         </form>

@@ -6,6 +6,8 @@ import TasksList from './Pages/TasksList';
 import ManagePage from './Pages/ManagePage';
 import ErrorMessage from './Components/Utils/ErrorMessage';
 import CreateProjectForm from './Pages/CreateProjectForm';
+import ProjectPage from './Pages/ProjectPage';
+import TaskPage from "./Pages/TaskPage"
 import {Routes, Route} from "react-router-dom"
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         <Route path="dashboard" element={<Dashboard/>}>
           <Route index element={<ProjectsList/>}/>
           <Route path="projects" element={<ProjectsList/>}/>
+          <Route path="project-page" element={<ProjectPage/>}/> 
+          <Route path="task-page" element={<TaskPage/>}/> 
           <Route path="tasks" element={<TasksList/>}/>
           <Route path="manage" element={<ManagePage/>}/>
           <Route path="create-project" element={<CreateProjectForm/>}/>

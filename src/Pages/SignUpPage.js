@@ -18,7 +18,7 @@ export default function SignUpForm(){
     }
 
     return(
-        <form style={{maxWidth: "450px", backgroundColor: "#e8e8e8", marginTop: "4em"}} className="p-3 mx-auto shadow border rounded" onSubmit={handleSubmit}>
+        <form style={{width:"92%", maxWidth: "450px", backgroundColor: "#e8e8e8", marginTop: "4em"}} className="p-3 mx-auto shadow border rounded" onSubmit={handleSubmit}>
             <h3 className="text-center mb-3">Sign Up</h3>
             <div className="form-group">
                 <label htmlFor="sign-up-username">Username</label>

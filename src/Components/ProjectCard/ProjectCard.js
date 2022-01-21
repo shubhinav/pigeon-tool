@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Icon } from '@iconify/react';
 import "./ProjectCard.css"
 
@@ -19,7 +20,7 @@ export default function ProjectCard({ project, isTask }) {
                     </div>}
             </div>
             <div>
-                <button className="btn btn-outline-primary">View</button>
+                <Link to={isTask ? "/dashboard/task-page" : "/dashboard/project-page"} className="btn btn-outline-primary">View</Link>
             </div>
         </div>
     )
