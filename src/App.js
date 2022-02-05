@@ -1,3 +1,4 @@
+import React, {useContext}  from "react"
 import LogInForm from './Pages/LogInPage';
 import SignUpForm from './Pages/SignUpPage';
 import Dashboard from './Pages/Dashboard';
@@ -8,11 +9,19 @@ import ErrorMessage from './Components/Utils/ErrorMessage';
 import CreateProjectForm from './Pages/CreateProjectForm';
 import ProjectPage from './Pages/ProjectPage';
 import TaskPage from "./Pages/TaskPage"
+import CustomSnackbar from './Components/Snackbar/CustomSnackbar';
+import { UIContext } from './Context/UIContext';
 import {Routes, Route} from "react-router-dom"
 
 function App() {
+
+  const {open, color, message, setOpen} = useContext(UIContext)
+
   return (
     <div className="App">
+
+      <CustomSnackbar open={open} message={message} handleClose={() => setOpen(false)} color={color} />
+      
       <Routes>
         <Route path="/" element={<LogInForm/>}/>
         <Route path="sign-up" element={<SignUpForm/>}/>

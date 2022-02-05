@@ -8,7 +8,7 @@ export default function Header() {
             <h1 style={{fontSize: "1.5rem"}} className="mb-0">Logo</h1>
             <p className="m-0" style={{fontSize: "0.85rem"}}>Powered by name</p>
             </div>
-            <h1 style={{fontSize: "1.5rem"}}>ToolName</h1>
+            <h1 style={{fontSize: "1.5rem"}}>PigeonTool</h1>
             <div className="btn-group">
                 <button type="button" style={{background: "transparent"}} className="px-0 btn d-flex justify-content-between align-items-center dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <Icon icon="ant-design:user-outlined" inline={true} /> 
