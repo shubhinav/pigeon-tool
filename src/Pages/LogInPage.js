@@ -1,23 +1,31 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { userLogIn } from "../ApiCrud/ApiCrud"
 import Loader from "../Components/Utils/Loader/Loader"
 import { toast } from "react-toastify"
+import { isJwtExpired } from "jwt-check-expiration";
 
 export default function LogInForm() {
 
     const navigate = useNavigate()
 
-    // const accessToken = localStorage.getItem('accessToken')
+    const accessToken = localStorage.getItem('accessToken')
 
     const [inputValues, setInputValues] = useState({ email: "", password: "" })
     const [isLoading, setIsLoading] = useState(false)
 
-    // useEffect(()=>{
-    //     if(accessToken){
-    //         navigate("/dashboard")
-    //     }
-    // },[])
+    useEffect(()=>{
+        if(accessToken){
+            if(isJwtExpired(accessToken)){
+                localStorage.removeItem('accessToken')
+                localStorage.removeItem('tokenType')
+                localStorage.removeItem('userType')
+            }
+            else{
+                navigate("/dashboard")
+            }
+        }
+    },[])
 
     function handleChange(e) {
         const { value, name } = e.target

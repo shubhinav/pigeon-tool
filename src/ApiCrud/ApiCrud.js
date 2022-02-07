@@ -1,5 +1,6 @@
 import axios from "axios"
 import { toast } from "react-toastify"
+import history from "../RouterSetup/historyObj"
 
 export const baseUrl = 'http://localhost:8000/'
 const tokenType = localStorage.getItem('tokenType')
@@ -13,9 +14,9 @@ export const api = axios.create({
 api.interceptors.response.use( (res) => {
     return res;
   }, (e) => {
-        if(e.response.status === 401){
-            window.location.href = "/"
+        if(e.response.status == 401){
             toast.info("Session expired. Log in to continue.")
+            history.push('/')
         }
         else{
             toast.error("There was an error")

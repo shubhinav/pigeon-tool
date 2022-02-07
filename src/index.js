@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import HistoryRouter from './RouterSetup/HistoryRouter';
+import history from './RouterSetup/historyObj';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <HistoryRouter history={history}>
       <App />
-    </Router>
+    </HistoryRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

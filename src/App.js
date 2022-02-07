@@ -18,36 +18,37 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
 
   return (
-    <div className="App">
+    
+      <div className="App">
 
-      <ToastContainer position="bottom-right"
-        theme= "colored" 
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false} />
+        <ToastContainer position="bottom-right"
+          theme="colored"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false} />
 
-      <Routes>
-        <Route path="/" element={<LogInForm />} />
-        <Route path="sign-up" element={<SignUpForm />} />
-        <Route path="change-password" element={<ChangePassword />} />
-        <Route path="change-username" element={<ChangeUsername />} />
-        <Route path="dashboard" element={<Dashboard />}>
-          <Route index element={<ProjectsList />} />
-          <Route path="projects" element={<ProjectsList />} />
-          <Route path="project-page" element={<ProjectPage />} />
-          <Route path="task-page" element={<TaskPage />} />
-          <Route path="tasks" element={<TasksList />} />
-          <Route path="manage" element={<ManagePage />} />
-          <Route path="create-project" element={<CreateProjectForm />} />
-        </Route>
-        <Route path="*" element={<ErrorMessage />} />
-      </Routes>
-    </div>
+        <Routes>
+          <Route path="/" element={<LogInForm />} />
+          <Route path="sign-up" element={<SignUpForm />} />
+          <Route path="change-password" element={<ChangePassword />} />
+          <Route path="change-username" element={<ChangeUsername />} />
+          <Route path="dashboard" element={<Dashboard />}>
+            <Route index element={<ProjectsList />} />
+            <Route path="projects" element={<ProjectsList />} />
+            <Route path="project-page" element={<ProjectPage />} />
+            <Route path="task-page" element={<TaskPage />} />
+            <Route path="tasks" element={<TasksList />} />
+            <Route path="manage" element={<ManagePage />} />
+            <Route path="create-project" element={<CreateProjectForm />} />
+          </Route>
+          <Route path="*" element={<ErrorMessage />} />
+        </Routes>
+      </div>
   );
 }
 
