@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom";
 import { Icon } from '@iconify/react';
 
 export default function Header() {
@@ -15,7 +16,8 @@ export default function Header() {
                     <span className="mx-1">John Doe</span>
                 </button>
                 <div className="dropdown-menu dropdown-menu-right">
-                    <button className="dropdown-item" type="button">Change Password</button>
+                    <Link type="button" className="dropdown-item" to="/change-password">Change Password</Link>
+                    <Link type="button" className="dropdown-item" to="/change-username">Change Username</Link>
                     <button className="dropdown-item" type="button">Log Out</button>
                 </div>
             </div>

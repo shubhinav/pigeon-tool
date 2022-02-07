@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import axios from "axios"
 import { UIContext } from "../Context/UIContext"
+import { userSignUp } from "../ApiCrud/ApiCrud"
+import Loader from "../Components/Utils/Loader/Loader"
 
 export default function SignUpForm() {
 
@@ -9,8 +10,8 @@ export default function SignUpForm() {
 
     const {openSnackbar} = useContext(UIContext)
 
-    // form state
     const [inputValues, setInputValues] = useState({ user_name: "", email: "", password: "" })
+    const [isLoading, setIsLoading] = useState(false)
 
     function handleChange(e) {
         const { value, name } = e.target
@@ -21,14 +22,18 @@ export default function SignUpForm() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(inputValues)
 
-        axios.post('http://localhost:8000/api/user/signup', inputValues)
+        setIsLoading(true)
+
+        userSignUp(inputValues)
         .then(()=>{
-            openSnackbar("User added successfully. Log In to continue.", "success")
+            openSnackbar("Signed up successfully. Log In to continue.", "success")
+            setIsLoading(false)
             navigate("/")
         })
         .catch(e=>{
+            console.log(e)
+            setIsLoading(false)
             openSnackbar("There was an error.", "error")
         })
     }
@@ -71,9 +76,10 @@ export default function SignUpForm() {
                         onChange={handleChange}
                         required />
                 </div>
+                {isLoading ? <Loader width="40px" height="40px" mt="2"/> : 
                 <button style={{ display: "block" }} type="submit" className="mx-auto mt-2 btn btn-primary">
                     Sign Up
-                </button>
+                </button>}
                 <div className="mt-3 pt-3 mb-1" style={{ borderTop: "1px solid rgba(0,0,0,0.1)" }}>
                     <p className="text-center m-0">Already have an account? <Link to="/" className="font-weight-bold">Log in</Link></p>
                 </div>

@@ -20,7 +20,7 @@ export default function ProjectCard({ project, isTask }) {
                     </div>}
             </div>
             <div>
-                <Link to={isTask ? "/dashboard/task-page" : "/dashboard/project-page"} className="btn btn-outline-primary">View</Link>
+                <Link to={isTask ? "/dashboard/task-page" : "/dashboard/project-page"} className="btn btn-outline-primary">View <Icon icon="charm:arrow-right" inline={true} /></Link>
             </div>
         </div>
     )

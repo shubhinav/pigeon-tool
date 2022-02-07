@@ -9,9 +9,9 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
     <UIContextProvider>
-      <Router>
-        <App />
-      </Router>
+        <Router>
+          <App />
+        </Router>
     </UIContextProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -9,7 +9,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function CustomSnackbar({open, message, handleClose, color}) {
 
   return (
-      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose} anchorOrigin={{ vertical: "top", horizontal: "right" }}>
+      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose} anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
         <Alert onClose={handleClose} severity={color} sx={{ width: '100%' }}>
           {message}
         </Alert>

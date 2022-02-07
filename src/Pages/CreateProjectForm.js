@@ -70,11 +70,11 @@ export default function CreateProjectForm() {
                 </div>
             </div>
             <div className="form-group">
-                <label htmlFor="images-url">Folder URL</label>
+                <label htmlFor="images-url">Google Drive URL</label>
                 <input id="images-url"
                     type="url"
                     className="form-control"
-                    placeholder="Enter URL of images folder"
+                    placeholder="Enter Google Drive URL"
                     name="url"
                     value={inputValues.url}
                     onChange={handleChange}
