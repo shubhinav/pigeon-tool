@@ -1,46 +1,43 @@
-import React, {useState, useContext} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import { changeUsername } from "../ApiCrud/ApiCrud";
-import { UIContext } from "../Context/UIContext";
 import Loader from "../Components/Utils/Loader/Loader";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
-import Tooltip from '@mui/material/Tooltip';
+import { toast } from "react-toastify";
+import ReactTooltip from 'react-tooltip';
 
 export default function ChangePassword() {
 
-    const {openSnackbar} = useContext(UIContext)
-
     const navigate = useNavigate()
 
-    const [inputValues, setInputValues] = useState({username: "", confirmUsername: ""})
+    const [inputValues, setInputValues] = useState({ username: "", confirmUsername: "" })
     const [isLoading, setIsLoading] = useState(false)
 
-    function handleChange(e){
-        const {value, name} = e.target
-        setInputValues(prevState=>{
-            return {...prevState, [name]: value}
+    function handleChange(e) {
+        const { value, name } = e.target
+        setInputValues(prevState => {
+            return { ...prevState, [name]: value }
         })
     }
 
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault()
 
-        if(inputValues.username === inputValues.confirmUsername){
+        if (inputValues.username === inputValues.confirmUsername) {
             setIsLoading(true)
-            changeUsername(inputValues.username).then(res=>{
-                openSnackbar("Username changed successfully.", "success")
+            changeUsername(inputValues.username).then(() => {
+                toast.success('Username changed successfully')
                 setIsLoading(false)
                 navigate("/dashboard")
-            }).catch(e=>{
-                console.log(e)
-                openSnackbar("There was an error.", "error")
-                setIsLoading(false)
             })
+                .catch(() => {
+                    setIsLoading(false)
+                })
         }
-        else{
-            openSnackbar("Usernames do not match.", "warning")
+        else {
+            toast.warning("Usernames do not match.")
         }
     }
 
@@ -48,13 +45,12 @@ export default function ChangePassword() {
         <div>
             <Header />
             <div className="container my-3 py-2" style={{ maxWidth: "500px" }}>
-            <div className="d-flex align-items-bottom">
-                    <Tooltip title="Back to Dashboard" placement="left" arrow>
-                        <Link to="/dashboard" className="text-dark mr-3 mt-1"><Icon icon="charm:arrow-left" inline={true} height="30px" width="30px"/></Link>
-                    </Tooltip>
+                <div className="d-flex align-items-bottom">
+                    <Link data-tip="Back to dashboard" to="/dashboard" className="text-dark mr-3 mt-1"><Icon icon="charm:arrow-left" inline={true} height="30px" width="30px" /></Link>
+                    <ReactTooltip place="left" effect="solid"/>
                     <h3 className="mb-0"> Change Username</h3>
                 </div>
-                <hr/>
+                <hr />
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="newUsername">
@@ -67,7 +63,7 @@ export default function ChangePassword() {
                             name="username"
                             value={inputValues.username}
                             onChange={handleChange}
-                            required/>
+                            required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="ConfirNewUsername">
@@ -80,12 +76,12 @@ export default function ChangePassword() {
                             name="confirmUsername"
                             value={inputValues.confirmUsername}
                             onChange={handleChange}
-                            required/>
+                            required />
                     </div>
-                    {isLoading ? <Loader width="40px" height="40px" mt="2" mx="1"/> : 
-                    <button style={{ display: "block" }} type="submit" className="mt-2 btn btn-primary">
-                        Change Username
-                    </button>}
+                    {isLoading ? <Loader width="40px" height="40px" mt="2" mx="1" /> :
+                        <button style={{ display: "block" }} type="submit" className="mt-2 btn btn-primary">
+                            Change Username
+                        </button>}
                 </form>
             </div>
         </div>

@@ -1,14 +1,12 @@
-import React, { useState, useContext } from "react"
+import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { UIContext } from "../Context/UIContext"
 import { userSignUp } from "../ApiCrud/ApiCrud"
 import Loader from "../Components/Utils/Loader/Loader"
+import { toast } from "react-toastify"
 
 export default function SignUpForm() {
 
     let navigate = useNavigate()
-
-    const {openSnackbar} = useContext(UIContext)
 
     const [inputValues, setInputValues] = useState({ user_name: "", email: "", password: "" })
     const [isLoading, setIsLoading] = useState(false)
@@ -27,14 +25,13 @@ export default function SignUpForm() {
 
         userSignUp(inputValues)
         .then(()=>{
-            openSnackbar("Signed up successfully. Log In to continue.", "success")
+            toast.success("Signed up successfully. Log In to continue.")
             setIsLoading(false)
             navigate("/")
         })
-        .catch(e=>{
-            console.log(e)
+        .catch(()=>{
             setIsLoading(false)
-            openSnackbar("There was an error.", "error")
+            toast.error("There was an error.")
         })
     }
 

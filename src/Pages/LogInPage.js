@@ -1,16 +1,14 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { UIContext } from "../Context/UIContext"
 import { userLogIn } from "../ApiCrud/ApiCrud"
 import Loader from "../Components/Utils/Loader/Loader"
+import { toast } from "react-toastify"
 
 export default function LogInForm() {
 
     const navigate = useNavigate()
 
     // const accessToken = localStorage.getItem('accessToken')
-
-    const { openSnackbar } = useContext(UIContext)
 
     const [inputValues, setInputValues] = useState({ email: "", password: "" })
     const [isLoading, setIsLoading] = useState(false)
@@ -39,16 +37,15 @@ export default function LogInForm() {
 
         userLogIn(formData)
             .then((res) => {
-                console.log(res.data)
                 localStorage.setItem('tokenType', res.data.token_type)
                 localStorage.setItem('accessToken', res.data.access_token)
                 localStorage.setItem('userType', res.data.user_type)
+                toast.success("Logged in successfully.")
                 setIsLoading(false)
                 navigate("/dashboard/projects")
             })
-            .catch(e => {
-                console.log(e)
-                openSnackbar("There was an error", "error")
+            .catch(() => {
+                toast.error("There was an error")
                 setIsLoading(false)
             })
     }

@@ -1,12 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { addAnyUser } from "../ApiCrud/ApiCrud";
 import { changeUserPassword } from "../ApiCrud/ApiCrud";
-import { UIContext } from "../Context/UIContext"
 import Loader from "../Components/Utils/Loader/Loader";
+import { toast } from "react-toastify";
 
 export default function ManagePage() {
-
-    const { openSnackbar } = useContext(UIContext)
 
     const [addUserValues, setAddUserValues] = useState({
         user_type: "",
@@ -42,7 +40,7 @@ export default function ManagePage() {
         e.preventDefault()
         setIsLoading(true)
         addAnyUser(addUserValues).then(() => {
-            openSnackbar("User added successfully.", "success")
+            toast.success("User added successfully.")
             setIsLoading(false)
             setAddUserValues({
                 user_type: "",
@@ -50,9 +48,7 @@ export default function ManagePage() {
                 email: "",
                 password: ""
             })
-        }).catch(e => {
-            console.log(e)
-            openSnackbar("There was an error", "error")
+        }).catch(() => {
             setIsLoading(false)
         })
     }
@@ -69,22 +65,19 @@ export default function ManagePage() {
             setIsLoadingPwd(true)
             
             changeUserPassword(dataToSend).then(() => {
-                openSnackbar("Password changed successfully.", "success")
+                toast.success("Password changed successfully.")
                 setIsLoadingPwd(false)
                 setChangePasswordValues({
                     email: "",
                     password: "",
                     confirmPassword: "",
                 })
-            }).catch(e => {
-                console.log(e)
-                openSnackbar("There was an error", "error")
+            }).catch(() => {
                 setIsLoadingPwd(false)
             })
         }
         else{
-            console.log(dataToSend)
-            openSnackbar("Passwords do not match. Please enter again.", "warning")
+            toast.warning("Passwords do not match. Please enter again.")
             setChangePasswordValues(prevState=>{
                 return {...prevState, password: "", confirmPassword: ""}
             })

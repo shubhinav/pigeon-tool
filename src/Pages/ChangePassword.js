@@ -1,17 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import { changePassword } from "../ApiCrud/ApiCrud";
-import { UIContext } from "../Context/UIContext";
 import Loader from "../Components/Utils/Loader/Loader";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
-import Tooltip from '@mui/material/Tooltip';
+import { toast } from "react-toastify";
+import ReactTooltip from 'react-tooltip';
 
 export default function ChangePassword() {
 
-    const { openSnackbar } = useContext(UIContext)
     const navigate = useNavigate()
+
     const [inputValues, setInputValues] = useState({ password: "", confirmPassword: "" })
     const [isLoading, setIsLoading] = useState(false)
 
@@ -26,18 +26,17 @@ export default function ChangePassword() {
         e.preventDefault()
         if (inputValues.password === inputValues.confirmPassword) {
             setIsLoading(true)
-            changePassword(inputValues.password).then(res => {
-                openSnackbar("Password changed successfully.", "success")
+            changePassword(inputValues.password).then(() => {
+                toast.success("Password changed successfully.")
                 setIsLoading(false)
                 navigate("/dashboard")
-            }).catch(e => {
-                console.log(e)
-                openSnackbar("There was an error.", "error")
+            }).catch(() => {
                 setIsLoading(false)
             })
         }
         else {
-            openSnackbar("Passwords do not match. Please enter again.", "warning")
+            toast.warning("Passwords do not match. Enter again.")
+            setInputValues({ password: "", confirmPassword: "" })
         }
     }
 
@@ -46,9 +45,8 @@ export default function ChangePassword() {
             <Header />
             <div className="container my-3 py-2" style={{ maxWidth: "500px" }}>
                 <div className="d-flex align-items-bottom">
-                    <Tooltip title="Back to Dashboard" placement="left" arrow>
-                        <Link to="/dashboard" className="text-dark mr-3 mt-1"><Icon icon="charm:arrow-left" inline={true} height="30px" width="30px"/></Link>
-                    </Tooltip>
+                    <Link data-tip="Back to dashboard" to="/dashboard" className="text-dark mr-3 mt-1"><Icon icon="charm:arrow-left" inline={true} height="30px" width="30px" /></Link>
+                    <ReactTooltip place="left" effect="solid"/>
                     <h3 className="mb-0"> Change Password</h3>
                 </div>
                 <hr />

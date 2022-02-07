@@ -1,4 +1,5 @@
 import axios from "axios"
+import { toast } from "react-toastify"
 
 export const baseUrl = 'http://localhost:8000/'
 const tokenType = localStorage.getItem('tokenType')
@@ -8,6 +9,19 @@ export const api = axios.create({
     baseURL: baseUrl,
     headers: {"Authorization": `${tokenType} ${accessToken}`}
 });
+
+api.interceptors.response.use( (res) => {
+    return res;
+  }, (e) => {
+        if(e.response.status === 401){
+            window.location.href = "/"
+            toast.info("Session expired. Log in to continue.")
+        }
+        else{
+            toast.error("There was an error")
+        }
+    return Promise.reject(e);
+  });
 
 // SIGN UP
 export function userSignUp(data){
