@@ -15,7 +15,7 @@ api.interceptors.response.use( (res) => {
     return res;
   }, (e) => {
         if(e.response.status == 401){
-            toast.info("Session expired. Log in to continue.")
+            toast.info("Session expired or user not logged in. Log in to continue.")
             history.push('/')
         }
         else{
@@ -23,6 +23,8 @@ api.interceptors.response.use( (res) => {
         }
     return Promise.reject(e);
   });
+
+//   console.log(accessToken)
 
 // SIGN UP
 export function userSignUp(data){
@@ -32,6 +34,14 @@ export function userSignUp(data){
 // LOG IN
 export function userLogIn(data){
     return axios.post(`${baseUrl}api/user/login`, data)
+}
+
+// LOG OUT
+export function userLogOut(){
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('tokenType')
+    localStorage.removeItem('userType')
+    window.location.href = "/"
 }
 
 // CHANGE PASSWORD
@@ -53,3 +63,5 @@ export function addAnyUser(data){
 export function changeUserPassword(data){
     return api.post(`api/user/change-forgot-password`, data)
 }
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaHViaEBleGFtcGxlLmNvbSIsImV4cCI6MTY0NDM0NTAyNH0.op156C6z0z8RY06UliKmKtun6HV9jtUJavkOJG43ck8

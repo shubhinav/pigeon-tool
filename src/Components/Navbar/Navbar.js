@@ -3,6 +3,7 @@ import "./Navbar.css"
 import { Link } from "react-router-dom"
 
 export default function Navbar() {
+    const userType = localStorage.getItem('userType')
     return (
         <ul className="nav border-bottom">
             <li className="nav-item">
@@ -11,9 +12,9 @@ export default function Navbar() {
             <li className="nav-item">
                 <Link className="nav-link" to="tasks">Tasks</Link>
             </li>
-            <li className="nav-item">
+            {userType === "admin" && <li className="nav-item">
                 <Link className="nav-link" to="manage">Manage</Link>
-            </li>
+            </li>}
         </ul>
     )
 }

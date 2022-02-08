@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 export default function ProjectsList(){
 
+    const userType = localStorage.getItem('userType')
+
     const [projects, setProjects] = useState([])
 
     useEffect(()=>{
@@ -16,7 +18,7 @@ export default function ProjectsList(){
         <div className="mt-3">
             <div className="d-flex justify-content-between align-items-center">
                 <h3 className="m-0">Projects</h3>
-                <Link to="/dashboard/create-project" className="btn btn-primary"><Icon icon="akar-icons:plus" color="white" inline={true} /> Create New Project</Link>
+                {userType !== "student" && <Link to="/dashboard/create-project" className="btn btn-primary"><Icon icon="akar-icons:plus" color="white" inline={true} /> Create New Project</Link>}
             </div>
             {projects.length ? projects.map(project=>{
                 return <ProjectCard key={project.id} project={project} isTask={false}/>

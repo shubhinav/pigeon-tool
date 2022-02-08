@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { userSignUp } from "../ApiCrud/ApiCrud"
 import Loader from "../Components/Utils/Loader/Loader"
@@ -6,10 +6,18 @@ import { toast } from "react-toastify"
 
 export default function SignUpForm() {
 
+    const accessToken = localStorage.getItem('accessToken')
+
     let navigate = useNavigate()
 
     const [inputValues, setInputValues] = useState({ user_name: "", email: "", password: "" })
     const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(()=>{
+        if(accessToken){
+            navigate("/")
+        }
+    }, [])
 
     function handleChange(e) {
         const { value, name } = e.target

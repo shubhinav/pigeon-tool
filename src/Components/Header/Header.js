@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom";
 import { Icon } from '@iconify/react';
+import { userLogOut } from "../../ApiCrud/ApiCrud";
 
 export default function Header() {
     return (
@@ -18,7 +19,8 @@ export default function Header() {
                 <div className="dropdown-menu dropdown-menu-right">
                     <Link type="button" className="dropdown-item" to="/change-password">Change Password</Link>
                     <Link type="button" className="dropdown-item" to="/change-username">Change Username</Link>
-                    <button className="dropdown-item" type="button">Log Out</button>
+                    <hr/>
+                    <button type="button" style={{display: "block"}} className="btn btn-danger mx-auto mb-2" onClick={userLogOut}>Log Out</button>
                 </div>
             </div>
         </header>

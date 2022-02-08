@@ -36,7 +36,7 @@ export default function ChangePassword() {
         }
         else {
             toast.warning("Passwords do not match. Enter again.")
-            setInputValues({ password: "", confirmPassword: "" })
+            // setInputValues({ password: "", confirmPassword: "" })
         }
     }
 

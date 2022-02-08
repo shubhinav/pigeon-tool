@@ -10,7 +10,7 @@ export default function ProjectCard({ project, isTask }) {
                 <p className="m-0 project-card-name font-weight-bold">{project.name}</p>
                 <p className="m-0 text-muted">Created by {project.created_by}</p>
             </div>
-            <div>
+            <div className="mx-3">
                 {project.registered &&
                     <div>
                         {!isTask && <div className="d-flex">

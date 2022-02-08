@@ -17,6 +17,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
+  const userType = localStorage.getItem('userType')
+
   return (
     
       <div className="App">
@@ -43,11 +45,12 @@ function App() {
             <Route path="project-page" element={<ProjectPage />} />
             <Route path="task-page" element={<TaskPage />} />
             <Route path="tasks" element={<TasksList />} />
-            <Route path="manage" element={<ManagePage />} />
-            <Route path="create-project" element={<CreateProjectForm />} />
+            {userType === "admin" && <Route path="manage" element={<ManagePage />} />}
+            {userType !== "student" && <Route path="create-project" element={<CreateProjectForm />} />}
           </Route>
           <Route path="*" element={<ErrorMessage />} />
         </Routes>
+        {console.log(userType)}
       </div>
   );
 }
