@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import ProjectCard from "../Components/ProjectCard/ProjectCard";
-import Loader from "../Components/Utils/Loader/Loader";
+import ProjectCard from "../../Components/ProjectCard/ProjectCard";
+import Loader from "../../Components/Utils/Loader/Loader";
 
 export default function TasksList(){
 

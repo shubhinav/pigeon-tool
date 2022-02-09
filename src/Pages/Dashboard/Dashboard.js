@@ -1,9 +1,9 @@
 import React from "react"
-import Header from "../Components/Header/Header"
-import Navbar from "../Components/Navbar/Navbar"
+import Header from "../../Components/Header/Header"
+import Navbar from "../../Components/Navbar/Navbar"
 import { Outlet } from "react-router-dom"
 
-export default function Dashboard(props) {
+export default function Dashboard() {
     return (
         <div>
             <Header/>

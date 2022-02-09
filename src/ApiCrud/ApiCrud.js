@@ -14,7 +14,7 @@ export const api = axios.create({
 api.interceptors.response.use( (res) => {
     return res;
   }, (e) => {
-        if(e.response.status == 401){
+        if(e.response.status === 401){
             toast.info("Session expired or user not logged in. Log in to continue.")
             history.push('/')
         }
@@ -23,8 +23,6 @@ api.interceptors.response.use( (res) => {
         }
     return Promise.reject(e);
   });
-
-//   console.log(accessToken)
 
 // SIGN UP
 export function userSignUp(data){
@@ -42,6 +40,11 @@ export function userLogOut(){
     localStorage.removeItem('tokenType')
     localStorage.removeItem('userType')
     window.location.href = "/"
+}
+
+// GET USER DATA
+export function getUserData(){
+    return api.get('api/user/me')
 }
 
 // CHANGE PASSWORD

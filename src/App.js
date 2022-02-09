@@ -1,17 +1,18 @@
 import React, { useContext } from "react"
 import LogInForm from './Pages/LogInPage';
 import SignUpForm from './Pages/SignUpPage';
-import Dashboard from './Pages/Dashboard';
-import ProjectsList from './Pages/ProjectsList';
-import TasksList from './Pages/TasksList';
-import ManagePage from './Pages/ManagePage';
+import Account from "./Pages/Account/Account";
+import Dashboard from './Pages/Dashboard/Dashboard';
+import ProjectsList from './Pages/Dashboard/ProjectsList';
+import TasksList from './Pages/Dashboard/TasksList';
+import ManagePage from './Pages/Dashboard/ManagePage';
 import ErrorMessage from './Components/Utils/ErrorMessage';
-import CreateProjectForm from './Pages/CreateProjectForm';
-import ProjectPage from './Pages/ProjectPage';
-import TaskPage from "./Pages/TaskPage"
+import CreateProjectForm from './Pages/Dashboard/CreateProjectForm';
+import ProjectPage from './Pages/Dashboard/ProjectPage';
+import TaskPage from "./Pages/Dashboard/TaskPage"
 import { Routes, Route } from "react-router-dom"
-import ChangePassword from "./Pages/ChangePassword";
-import ChangeUsername from "./Pages/ChangeUsername"
+import ChangePassword from "./Pages/Account/ChangePassword";
+import ChangeUsername from "./Pages/Account/ChangeUsername"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -37,8 +38,13 @@ function App() {
         <Routes>
           <Route path="/" element={<LogInForm />} />
           <Route path="sign-up" element={<SignUpForm />} />
-          <Route path="change-password" element={<ChangePassword />} />
-          <Route path="change-username" element={<ChangeUsername />} />
+
+          <Route path="account" element={<Account/>}>
+            <Route index element={<ChangePassword />} />
+            <Route path="change-password" element={<ChangePassword />} />
+            <Route path="change-username" element={<ChangeUsername />} />
+          </Route>
+
           <Route path="dashboard" element={<Dashboard />}>
             <Route index element={<ProjectsList />} />
             <Route path="projects" element={<ProjectsList />} />
@@ -48,9 +54,10 @@ function App() {
             {userType === "admin" && <Route path="manage" element={<ManagePage />} />}
             {userType !== "student" && <Route path="create-project" element={<CreateProjectForm />} />}
           </Route>
+
           <Route path="*" element={<ErrorMessage />} />
+
         </Routes>
-        {console.log(userType)}
       </div>
   );
 }

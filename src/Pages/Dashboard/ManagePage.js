@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { addAnyUser } from "../ApiCrud/ApiCrud";
-import { changeUserPassword } from "../ApiCrud/ApiCrud";
-import Loader from "../Components/Utils/Loader/Loader";
+import { addAnyUser } from "../../ApiCrud/ApiCrud";
+import { changeUserPassword } from "../../ApiCrud/ApiCrud";
+import Loader from "../../Components/Utils/Loader/Loader";
 import { toast } from "react-toastify";
 
 export default function ManagePage() {

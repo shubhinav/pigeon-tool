@@ -47,12 +47,12 @@ export default function LogInForm() {
             .then((res) => {
                 localStorage.setItem('tokenType', res.data.token_type)
                 localStorage.setItem('accessToken', res.data.access_token)
-                localStorage.setItem('userType', res.data.user_type)
+                localStorage.setItem('userType', "admin")
                 setIsLoading(false)
                 window.location.href = "/"
             })
             .catch(e => {
-                if(e.response.status == 401){
+                if(e.response.status === 401){
                     toast.error("Invalid credentials. Can't log in.")
                 }
                 else{

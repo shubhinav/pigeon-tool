@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
-import ProjectPageUI from "../Components/ProjectPageUI/ProjectPageUI"
-import Loader from "../Components/Utils/Loader/Loader"
+import ProjectPageUI from "../../Components/ProjectPageUI/ProjectPageUI"
+import Loader from "../../Components/Utils/Loader/Loader"
 
 
 export default function ProjectPage(){
