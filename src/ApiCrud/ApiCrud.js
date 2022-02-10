@@ -19,7 +19,7 @@ api.interceptors.response.use( (res) => {
             history.push('/')
         }
         else{
-            e.response.data.detail ? toast.error( e.response.data.detail) : toast.error("There was an error.")
+            e.response.data.detail ? toast.error(`ERROR: ${e.response.data.detail}`) : toast.error("There was an error.")
         }
 
     return Promise.reject(e);
