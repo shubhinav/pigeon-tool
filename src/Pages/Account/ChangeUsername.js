@@ -32,6 +32,7 @@ export default function ChangeUsername() {
                 navigate("/dashboard")
             })
                 .catch(() => {
+                    toast.error("There was an error.")
                     setIsLoading(false)
                 })
         }

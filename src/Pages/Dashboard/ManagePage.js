@@ -48,8 +48,16 @@ export default function ManagePage() {
                 email: "",
                 password: ""
             })
-        }).catch(() => {
-            setIsLoading(false)
+        }).catch((e) => {
+            if(e.response.status === 400){
+                toast.error("Could not add user. This email is already registered.")
+                setIsLoading(false)
+            }
+            else{
+                toast.error("There was an error.")
+                setIsLoading(false)
+            }
+            
         })
     }
 
@@ -72,8 +80,15 @@ export default function ManagePage() {
                     password: "",
                     confirmPassword: "",
                 })
-            }).catch(() => {
-                setIsLoadingPwd(false)
+            }).catch((e) => {
+                if(e.response.status === 400){
+                    toast.error("This email is not registered.")
+                    setIsLoadingPwd(false)
+                }
+                else{
+                    toast.error("There was an error.")
+                    setIsLoadingPwd(false)
+                }
             })
         }
         else{
@@ -112,10 +127,11 @@ export default function ManagePage() {
                             required />
                     </div>
                     <div className="form-group">
-                        <input type="email"
+                        <input type="text"
                             className="form-control"
                             placeholder="Enter user email"
                             name="email"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                             value={addUserValues.email}
                             onChange={handleAddUserChange}
                             required />
@@ -136,10 +152,11 @@ export default function ManagePage() {
                 <form className="border mt-4 p-3 rounded ml-2" style={{ maxWidth: "550px", flex: "1" }} onSubmit={handleChangePasswordSubmit}>
                     <h5 className="mb-3">Change User Password</h5>
                     <div className="form-group">
-                        <input type="email"
+                        <input type="text"
                             className="form-control"
                             placeholder="Enter user email" 
                             name="email"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                             value={changePasswordValues.email}
                             onChange={handlePasswordValuesChange}
                             required/>

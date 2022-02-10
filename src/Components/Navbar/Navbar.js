@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 export default function Navbar() {
     const userType = localStorage.getItem('userType')
     return (
-        <ul className="nav border-bottom">
+        <ul className="nav border-bottom sticky-top">
             <li className="nav-item">
                 <Link className="nav-link" to="projects">Projects</Link>
             </li>

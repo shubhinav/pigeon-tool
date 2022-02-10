@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Icon } from '@iconify/react';
+import { toast } from "react-toastify";
+import { createNewProject } from "../../ApiCrud/ApiCrud";
+import Loader from "../../Components/Utils/Loader/Loader";
 
 export default function CreateProjectForm() {
 
-    const [inputValues, setInputValues] = useState({ name: "", label: "", url: "" })
+    const [inputValues, setInputValues] = useState({ name: "", label: "", url: "", description: ""})
     const [labelsArray, setLabelsArray] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     function handleChange(e) {
         const { value, name } = e.target
@@ -15,7 +19,26 @@ export default function CreateProjectForm() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log({name: inputValues.name, url: inputValues.url, labels: labelsArray})
+        if(labelsArray.length === 0){
+         return toast.warning("Add at least one label to create a project.")
+        }
+        const dataToSend = {project_name: inputValues.name, description: inputValues.description, labels: labelsArray}
+        setIsLoading(true)
+        createNewProject(dataToSend).then(()=>{
+            toast.success("Project created successfully.")
+            setInputValues({ name: "", label: "", url: "", description: ""})
+            setLabelsArray([])
+            setIsLoading(false)
+        }).catch((e)=>{
+            if(e.response.data.status === "PROJECT_EXIST"){
+                toast.error("Could not create Project. Project name should be unique.")
+                setIsLoading(false)
+            }
+            else{
+                toast.error("There was an error.")
+                setIsLoading(false)
+            }
+        })
     }
 
     function addLabel(){
@@ -69,7 +92,20 @@ export default function CreateProjectForm() {
                     })}
                 </div>
             </div>
+
             <div className="form-group">
+                <label htmlFor="description">Description</label>
+                <textarea id="description"
+                    className="form-control"
+                    rows="4"
+                    placeholder="Enter project description"
+                    name="description"
+                    value={inputValues.description}
+                    onChange={handleChange}
+                    required />
+            </div>
+
+            {/* <div className="form-group">
                 <label htmlFor="images-url">Google Drive URL</label>
                 <input id="images-url"
                     type="url"
@@ -79,10 +115,12 @@ export default function CreateProjectForm() {
                     value={inputValues.url}
                     onChange={handleChange}
                     required />
-            </div>
-            <button style={{ display: "block", width: "50%", minWidth: "200px" }} type="submit" className="mx-auto mt-4 btn btn-primary">
-                Create Project
-            </button>
+            </div> */}
+           
+            {isLoading ? <Loader width="40px" height="40px" mt="2" /> :
+                        <button style={{ display: "block", width: "50%", minWidth: "200px" }} type="submit" className="mx-auto mt-4 btn btn-primary">
+                        Create Project
+                    </button>}
         </form>
     )
 }

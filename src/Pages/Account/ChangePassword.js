@@ -30,12 +30,13 @@ export default function ChangePassword() {
                 setIsLoading(false)
                 navigate("/dashboard")
             }).catch(() => {
+                toast.error("There was an error.")
                 setIsLoading(false)
             })
         }
         else {
             toast.warning("Passwords do not match. Enter again.")
-            // setInputValues({ password: "", confirmPassword: "" })
+            setInputValues({ password: "", confirmPassword: "" })
         }
     }
 

@@ -1,8 +1,8 @@
 .loader {
-    border: 5px solid rgb(192, 192, 192); /* Light grey */
-    border-top: 5px solid #3498db; /* Blue */
+    border: 4px solid rgb(212, 212, 212); /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 0.75s linear infinite;
   }
   
   @keyframes spin {

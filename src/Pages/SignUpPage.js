@@ -37,9 +37,14 @@ export default function SignUpForm() {
             setIsLoading(false)
             navigate("/")
         })
-        .catch(()=>{
+        .catch((e)=>{
             setIsLoading(false)
-            toast.error("There was an error.")
+            if(e.response.status === 400){
+                toast.error("Sign up failed. This email is already registered.")
+            }
+            else{
+                toast.error("There was an error.")
+            }
         })
     }
 
@@ -62,10 +67,11 @@ export default function SignUpForm() {
                 <div className="form-group">
                     <label htmlFor="sign-up-email">Email</label>
                     <input id="sign-up-email"
-                        type="email"
+                        type="text"
                         className="form-control"
                         placeholder="Enter email"
                         name="email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                         value={inputValues.email}
                         onChange={handleChange}
                         required />

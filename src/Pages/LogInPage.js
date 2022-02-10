@@ -20,6 +20,7 @@ export default function LogInForm() {
                 localStorage.removeItem('accessToken')
                 localStorage.removeItem('tokenType')
                 localStorage.removeItem('userType')
+                localStorage.removeItem('email')
             }
             else{
                 navigate("/dashboard")
@@ -47,13 +48,15 @@ export default function LogInForm() {
             .then((res) => {
                 localStorage.setItem('tokenType', res.data.token_type)
                 localStorage.setItem('accessToken', res.data.access_token)
-                localStorage.setItem('userType', "admin")
+                localStorage.setItem('userType', res.data.user_type)
+                localStorage.setItem('email', res.data.email)
                 setIsLoading(false)
                 window.location.href = "/"
             })
             .catch(e => {
                 if(e.response.status === 401){
-                    toast.error("Invalid credentials. Can't log in.")
+                    console.log(e.response)
+                    toast.error("Incorrect username or password.")
                 }
                 else{
                     toast.error("There was an error.")
@@ -68,10 +71,11 @@ export default function LogInForm() {
             <div className="form-group">
                 <label htmlFor="log-in-email">Email</label>
                 <input id="log-in-email"
-                    type="email"
+                    type="text"
                     className="form-control"
                     placeholder="Enter email"
                     name="email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                     value={inputValues.email}
                     onChange={handleChange}
                     required />

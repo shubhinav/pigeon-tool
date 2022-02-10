@@ -26,14 +26,14 @@ function App() {
 
         <ToastContainer position="bottom-right"
           theme="colored"
-          autoClose={5000}
+          autoClose={6000}
           hideProgressBar
           newestOnTop={false}
           closeOnClick
           rtl={false}
           pauseOnFocusLoss
           draggable
-          pauseOnHover={false} />
+          pauseOnHover/>
 
         <Routes>
           <Route path="/" element={<LogInForm />} />
@@ -48,7 +48,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />}>
             <Route index element={<ProjectsList />} />
             <Route path="projects" element={<ProjectsList />} />
-            <Route path="project-page" element={<ProjectPage />} />
+            <Route path="projects/:projectName" element={<ProjectPage />} />
             <Route path="task-page" element={<TaskPage />} />
             <Route path="tasks" element={<TasksList />} />
             {userType === "admin" && <Route path="manage" element={<ManagePage />} />}

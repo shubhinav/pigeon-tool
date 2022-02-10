@@ -18,9 +18,6 @@ api.interceptors.response.use( (res) => {
             toast.info("Session expired or user not logged in. Log in to continue.")
             history.push('/')
         }
-        else{
-            toast.error("There was an error")
-        }
     return Promise.reject(e);
   });
 
@@ -65,6 +62,26 @@ export function addAnyUser(data){
 // CHANGE USER PASSWORD (BY ADMIN)
 export function changeUserPassword(data){
     return api.post(`api/user/change-forgot-password`, data)
+}
+
+// GET ALL PROJECTS
+export function getAllProjects(){
+    return api.get('api/project/all')
+}
+
+// CREATE NEW PROJECT
+export function createNewProject(data){
+    return api.post(`api/project/create`, data)
+}
+
+// GET PROJECT DETAILS
+export function getProjectDetails(param){
+    return api.get(`api/project/details/${param}`)
+}
+
+// REGISTER FOR PROJECT
+export function registerForProject(param){
+    return api.post(`api/project/register/${param}`)
 }
 
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaHViaEBleGFtcGxlLmNvbSIsImV4cCI6MTY0NDM0NTAyNH0.op156C6z0z8RY06UliKmKtun6HV9jtUJavkOJG43ck8
