@@ -30,7 +30,6 @@ export default function ChangePassword() {
                 setIsLoading(false)
                 navigate("/dashboard")
             }).catch(() => {
-                toast.error("There was an error.")
                 setIsLoading(false)
             })
         }

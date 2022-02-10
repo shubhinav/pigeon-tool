@@ -24,7 +24,6 @@ export default function TasksList(){
             })
         })
         .catch(()=>{
-            toast.error("There was an error.")
             setIsLoading(false)
         })
     },[])

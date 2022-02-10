@@ -6,7 +6,7 @@ import Loader from "../../Components/Utils/Loader/Loader";
 
 export default function CreateProjectForm() {
 
-    const [inputValues, setInputValues] = useState({ name: "", label: "", url: "", description: ""})
+    const [inputValues, setInputValues] = useState({ name: "", label: "", url: "", description: "" })
     const [labelsArray, setLabelsArray] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
@@ -19,30 +19,23 @@ export default function CreateProjectForm() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        if(labelsArray.length === 0){
-         return toast.warning("Add at least one label to create a project.")
+        if (labelsArray.length === 0) {
+            return toast.warning("Add at least one label to create a project.")
         }
-        const dataToSend = {project_name: inputValues.name, description: inputValues.description, labels: labelsArray}
+        const dataToSend = { project_name: inputValues.name, description: inputValues.description, labels: labelsArray }
         setIsLoading(true)
-        createNewProject(dataToSend).then(()=>{
+        createNewProject(dataToSend).then(() => {
             toast.success("Project created successfully.")
-            setInputValues({ name: "", label: "", url: "", description: ""})
+            setInputValues({ name: "", label: "", url: "", description: "" })
             setLabelsArray([])
             setIsLoading(false)
-        }).catch((e)=>{
-            if(e.response.data.status === "PROJECT_EXIST"){
-                toast.error("Could not create Project. Project name should be unique.")
-                setIsLoading(false)
-            }
-            else{
-                toast.error("There was an error.")
-                setIsLoading(false)
-            }
+        }).catch(() => {
+            setIsLoading(false)
         })
     }
 
-    function addLabel(){
-        setLabelsArray(prevState=>{
+    function addLabel() {
+        setLabelsArray(prevState => {
             return [...prevState, inputValues.label]
         })
         setInputValues(prevState => {
@@ -50,8 +43,8 @@ export default function CreateProjectForm() {
         })
     }
 
-    function deleteLabel(index){
-        let newArray = labelsArray.filter((label, i)=>{
+    function deleteLabel(index) {
+        let newArray = labelsArray.filter((label, i) => {
             return i !== index
         })
         setLabelsArray(newArray)
@@ -81,14 +74,14 @@ export default function CreateProjectForm() {
                             placeholder="Enter label name"
                             name="label"
                             value={inputValues.label}
-                            onChange={handleChange}/>
+                            onChange={handleChange} />
 
                         <button type="button" className="btn btn-primary ml-2" onClick={addLabel} disabled={!inputValues.label}><Icon icon="akar-icons:plus" inline={true} />Add</button>
                     </div>
                 </div>
                 <div className="mt-2 d-flex flex-wrap">
-                    {labelsArray.map((label, index)=>{
-                        return <span key={index} style={{color: "#333",backgroundColor: "#d8d8d8", borderRadius: "100px"}} className="border px-2 mr-2">{label} <button type="button" style={{border: "none"}} className="btn p-0 bg-transparent"><Icon onClick={()=>deleteLabel(index)} icon="entypo:cross"/></button></span>
+                    {labelsArray.map((label, index) => {
+                        return <span key={index} style={{ color: "#333", backgroundColor: "#d8d8d8", borderRadius: "100px" }} className="border px-2 mr-2">{label} <button type="button" style={{ border: "none" }} className="btn p-0 bg-transparent"><Icon onClick={() => deleteLabel(index)} icon="entypo:cross" /></button></span>
                     })}
                 </div>
             </div>
@@ -116,11 +109,11 @@ export default function CreateProjectForm() {
                     onChange={handleChange}
                     required />
             </div> */}
-           
+
             {isLoading ? <Loader width="40px" height="40px" mt="2" /> :
-                        <button style={{ display: "block", width: "50%", minWidth: "200px" }} type="submit" className="mx-auto mt-4 btn btn-primary">
-                        Create Project
-                    </button>}
+                <button style={{ display: "block", width: "50%", minWidth: "200px" }} type="submit" className="mx-auto mt-4 btn btn-primary">
+                    Create Project
+                </button>}
         </form>
     )
 }

@@ -18,6 +18,10 @@ api.interceptors.response.use( (res) => {
             toast.info("Session expired or user not logged in. Log in to continue.")
             history.push('/')
         }
+        else{
+            e.response.data.detail ? toast.error( e.response.data.detail) : toast.error("There was an error.")
+        }
+
     return Promise.reject(e);
   });
 

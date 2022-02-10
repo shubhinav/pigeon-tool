@@ -18,8 +18,6 @@ export default function ProjectPage(){
         .then(res=>{
             console.log(res.data)
             setProject(res.data)
-        }).catch(()=>{
-            toast.error("There was an error.")
         })
     },[count])
 
@@ -31,7 +29,6 @@ export default function ProjectPage(){
             toast.success("Registered successfully")
         })
         .catch(()=>{
-            toast.error("There was an error.")
             setIsLoading(false)
         })
     }

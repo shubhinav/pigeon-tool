@@ -48,16 +48,8 @@ export default function ManagePage() {
                 email: "",
                 password: ""
             })
-        }).catch((e) => {
-            if(e.response.status === 400){
-                toast.error("Could not add user. This email is already registered.")
-                setIsLoading(false)
-            }
-            else{
-                toast.error("There was an error.")
-                setIsLoading(false)
-            }
-            
+        }).catch(() => {
+            setIsLoading(false)
         })
     }
 
@@ -80,15 +72,8 @@ export default function ManagePage() {
                     password: "",
                     confirmPassword: "",
                 })
-            }).catch((e) => {
-                if(e.response.status === 400){
-                    toast.error("This email is not registered.")
-                    setIsLoadingPwd(false)
-                }
-                else{
-                    toast.error("There was an error.")
-                    setIsLoadingPwd(false)
-                }
+            }).catch(() => {
+                setIsLoadingPwd(false)
             })
         }
         else{

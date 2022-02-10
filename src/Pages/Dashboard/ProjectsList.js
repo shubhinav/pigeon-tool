@@ -36,7 +36,6 @@ export default function ProjectsList() {
                 setIsLoading(false)
             })
             .catch(() => {
-                toast.error("There was an error.")
                 setIsLoading(false)
             })
     }, [])
