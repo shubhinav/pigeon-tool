@@ -4,6 +4,7 @@ import Loader from "../../Components/Utils/Loader/Loader"
 import { addImagesToProject, getProjectDetails, registerForProject } from "../../ApiCrud/ApiCrud"
 import { useParams } from "react-router-dom"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 export default function ProjectPage(){
 
@@ -12,11 +13,15 @@ export default function ProjectPage(){
     const [isLoading, setIsLoading] = useState(false)
     const [isImgLoading, setIsImgLoading] = useState(false)
     let params = useParams()
+    const navigate = useNavigate()
 
     useEffect(()=>{
         getProjectDetails(params.projectName)
         .then(res=>{
             setProject(res.data)
+        })
+        .catch(()=>{
+            navigate("/")
         })
     },[count])
 
