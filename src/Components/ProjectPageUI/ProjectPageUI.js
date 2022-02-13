@@ -4,6 +4,7 @@ import Loader from "../Utils/Loader/Loader";
 import truncateString from "../../Utils/truncateString";
 import ReactTooltip from "react-tooltip";
 import "./ProjectPageUI.css"
+import {baseUrl} from "../../ApiCrud/ApiCrud"
 
 export default function ProjectPageUI(props) {
 
@@ -58,7 +59,7 @@ export default function ProjectPageUI(props) {
                 <h5>Sample Images</h5>
                 <div className="images-container">
                     {project.images.map((img, i) => {
-                        return <img key={i} alt="sample" src={`http://localhost:8000${img}`} />
+                        return <img key={i} alt="sample" src={`${baseUrl}get-image${img}`} />
                     })}
                 </div>
             </div> : <></>}
