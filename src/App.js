@@ -49,8 +49,8 @@ function App() {
             <Route index element={<ProjectsList />} />
             <Route path="projects" element={<ProjectsList />} />
             <Route path="projects/:projectName" element={<ProjectPage />} />
-            <Route path="task-page" element={<TaskPage />} />
             <Route path="tasks" element={<TasksList />} />
+            <Route path="tasks/:projectName" element={<TaskPage />} />
             {userType === "admin" && <Route path="manage" element={<ManagePage />} />}
             {userType !== "student" && <Route path="create-project" element={<CreateProjectForm />} />}
           </Route>

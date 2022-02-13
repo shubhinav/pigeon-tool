@@ -16,7 +16,6 @@ export default function ProjectPage(){
     useEffect(()=>{
         getProjectDetails(params.projectName)
         .then(res=>{
-            // console.log(res.data)
             setProject(res.data)
         })
     },[count])

@@ -92,3 +92,8 @@ export function registerForProject(param){
 export function addImagesToProject(param){
     return api.post(`api/project/add-images/${param}`)
 }
+
+// GET TASK DETAILS
+export function getTaskDetails(param){
+    return api.get(`api/project/task-details/${param}`)
+}

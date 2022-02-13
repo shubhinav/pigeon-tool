@@ -1,14 +1,20 @@
 import React, {useState, useEffect} from "react"
 import ProjectPageUI from "../../Components/ProjectPageUI/ProjectPageUI"
 import Loader from "../../Components/Utils/Loader/Loader"
-
+import { getTaskDetails } from "../../ApiCrud/ApiCrud"
+import { useParams } from "react-router-dom"
 
 export default function ProjectPage(){
 
     const [task, setTask] = useState()
+    let params = useParams()
 
     useEffect(()=>{
-        fetch("/task.json").then(res=>res.json()).then(data=>setTask(data))
+        getTaskDetails(params.projectName)
+        .then(res=>{
+            console.log(res.data)
+            setTask(res.data)
+        })
     },[])
 
     return(

@@ -16,14 +16,13 @@ export default function ProjectCard({ project, isTask, searchInput }) {
                                 {!isTask && <div className="d-flex">
                                     <p className="m-0 text-muted"><Icon icon="bi:clipboard-check" inline={true} /> Registered</p>
                                 </div>}
-                                {/* <p className="m-0 text-muted">{project.annotations_count} images annotated</p> */}
                             </div>}
                     </div>
                 </div>
                 <p className="m-0 text-muted">Created by <b>{project.created_by}</b></p>
             </div>
             <div>
-                <Link to={isTask ? "/dashboard/task-page" : `/dashboard/projects/${project.project_name}`} className="btn btn-outline-primary ml-3">View <Icon icon="charm:arrow-right" inline={true} /></Link>
+                <Link to={isTask ? `/dashboard/tasks/${project.project_name}` : `/dashboard/projects/${project.project_name}`} className="btn btn-outline-primary ml-3">View <Icon icon="charm:arrow-right" inline={true} /></Link>
             </div>
         </div>
     )
