@@ -59,7 +59,7 @@ export default function ProjectPageUI(props) {
                 <h5>Sample Images</h5>
                 <div className="images-container">
                     {project.images.map((img, i) => {
-                        return <img key={i} alt="sample" src={`${baseUrl}get-image${img}`} />
+                        return <img key={i} alt="sample" src={`${baseUrl}api/project/get-image${img}`} />
                     })}
                 </div>
             </div> : <></>}
