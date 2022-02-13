@@ -88,4 +88,7 @@ export function registerForProject(param){
     return api.post(`api/project/register/${param}`)
 }
 
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaHViaEBleGFtcGxlLmNvbSIsImV4cCI6MTY0NDM0NTAyNH0.op156C6z0z8RY06UliKmKtun6HV9jtUJavkOJG43ck8
+// ADD IMAGES TO PROJECT
+export function addImagesToProject(param){
+    return api.post(`api/project/add-images/${param}`)
+}

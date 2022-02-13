@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import { getAllProjects } from "../../ApiCrud/ApiCrud";
-import { toast } from "react-toastify";
 import ProjectCard from "../../Components/ProjectCard/ProjectCard";
 import Loader from "../../Components/Utils/Loader/Loader";
 import EmptyListNotif from "../../Components/Utils/EmptyListNotif";
@@ -21,11 +20,18 @@ export default function TasksList(){
                         return [...prevState, ent]
                     })
                 }
+                else{
+                    return setTasks(prevState=>[...prevState])
+                }
             })
         })
         .catch(()=>{
             setIsLoading(false)
         })
+        return ()=>{
+            setTasks([])
+            setIsLoading(false)
+        }
     },[])
 
     const tasksList = () =>{

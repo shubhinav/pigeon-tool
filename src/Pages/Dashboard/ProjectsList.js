@@ -6,7 +6,6 @@ import Fuse from 'fuse.js';
 import { getAllProjects } from "../../ApiCrud/ApiCrud";
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 
 export default function ProjectsList() {
 
@@ -38,6 +37,11 @@ export default function ProjectsList() {
             .catch(() => {
                 setIsLoading(false)
             })
+        return ()=>{
+            setAllProjects([])
+            setFilteredProjects([])
+            setIsLoading(false)
+        }
     }, [])
 
     useEffect(() => {

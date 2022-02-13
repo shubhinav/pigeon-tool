@@ -1,9 +1,15 @@
 import React from "react";
 import { Icon } from '@iconify/react';
 import Loader from "../Utils/Loader/Loader";
+import truncateString from "../../Utils/truncateString";
+import ReactTooltip from "react-tooltip";
 import "./ProjectPageUI.css"
 
-export default function ProjectPageUI({ project, isTask, handleProjectRegister, isLoading }) {
+export default function ProjectPageUI(props) {
+
+    const { project, isTask, handleProjectRegister, handleProjectAddImages, isImgLoading, isLoading } = props
+
+    const userType = localStorage.getItem('userType')
 
     return (
         <div className="mt-3 mb-2">
@@ -15,18 +21,30 @@ export default function ProjectPageUI({ project, isTask, handleProjectRegister, 
                 {isTask && <p className="mb-0"><b>{project.annotation_count}</b> images annotated</p>}
             </div>
 
-            {/* <div className="mt-4 border rounded p-3">
-                <h5>Sample Images</h5>
-                <div className="images-container">
-                    {project.sample_images.map((img, i) => {
-                        return <img key={i} alt="sample" src={img} />
-                    })}
-                </div>
-            </div> */}
-
             <div className="mt-4 border rounded p-3">
                 <h5>Project Description</h5>
                 <p>{project.description}</p>
+            </div>
+
+           {!isTask && userType !== 'student' &&
+           <div className="mt-4 border rounded p-3">
+                <h5>Path</h5>
+                <div className="d-md-flex justify-content-between align-items-center">
+                    <p data-tip={project.path} className="m-0">{truncateString(project.path)}</p>
+                    <ReactTooltip place="top" effect="solid"/>
+                    <button className="btn btn-primary" onClick={handleProjectAddImages}>
+                        {isImgLoading ? <Loader height="30px" width="30px" mt={0}/> : "Add Images"}
+                    </button>
+                </div>
+            </div>}
+
+            <div className="mt-4 border rounded p-3">
+                <h5>Sample Images</h5>
+                <div className="images-container">
+                    {project.images.map((img, i) => {
+                        return <img key={i} alt="sample" src={`http:/${img}`} />
+                    })}
+                </div>
             </div>
 
             <div className="mt-4 border rounded p-3">

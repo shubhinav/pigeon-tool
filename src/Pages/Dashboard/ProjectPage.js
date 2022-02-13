@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from "react"
 import ProjectPageUI from "../../Components/ProjectPageUI/ProjectPageUI"
 import Loader from "../../Components/Utils/Loader/Loader"
-import { getProjectDetails } from "../../ApiCrud/ApiCrud"
+import { addImagesToProject, getProjectDetails, registerForProject } from "../../ApiCrud/ApiCrud"
 import { useParams } from "react-router-dom"
-import { registerForProject } from "../../ApiCrud/ApiCrud"
 import { toast } from "react-toastify"
 
 export default function ProjectPage(){
@@ -11,12 +10,13 @@ export default function ProjectPage(){
     const [project, setProject] = useState()
     const [count, setCount] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
+    const [isImgLoading, setIsImgLoading] = useState(false)
     let params = useParams()
 
     useEffect(()=>{
         getProjectDetails(params.projectName)
         .then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             setProject(res.data)
         })
     },[count])
@@ -33,6 +33,18 @@ export default function ProjectPage(){
         })
     }
 
+    function handleProjectAddImages(){
+        setIsImgLoading(true)
+        addImagesToProject(project.project_name).then(()=>{
+            setIsImgLoading(false)
+            setCount(prevCount=>prevCount + 1)
+            toast.success("Images added successfully")
+        })
+        .catch(()=>{
+            setIsImgLoading(false)
+        })
+    }
+
     return(
         <>
             {project 
@@ -41,7 +53,9 @@ export default function ProjectPage(){
                            project={project} 
                            isTask={false} 
                            isLoading={isLoading}
-                           handleProjectRegister={handleProjectRegister}/>
+                           isImgLoading={isImgLoading}
+                           handleProjectRegister={handleProjectRegister}
+                           handleProjectAddImages={handleProjectAddImages}/>
             : 
             <Loader/>}
         </>
