@@ -1,6 +1,7 @@
 import axios from "axios"
 import { toast } from "react-toastify"
 import history from "../RouterSetup/historyObj"
+import capitalizeFirstLetter from "../Utils/capitalizeFirstLetter"
 
 export const baseUrl = 'http://localhost:8000/'
 const tokenType = localStorage.getItem('tokenType')
@@ -19,7 +20,7 @@ api.interceptors.response.use( (res) => {
             history.push('/')
         }
         else{
-            e.response.data.detail ? toast.error(`ERROR: ${e.response.data.detail}`) : toast.error("There was an error.")
+            e.response.data.detail ? toast.error(`ERROR: ${capitalizeFirstLetter(e.response.data.detail)}`) : toast.error("There was an error.")
         }
 
     return Promise.reject(e);

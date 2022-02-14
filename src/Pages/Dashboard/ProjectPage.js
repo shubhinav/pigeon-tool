@@ -39,10 +39,10 @@ export default function ProjectPage(){
 
     function handleProjectAddImages(){
         setIsImgLoading(true)
-        addImagesToProject(project.project_name).then(()=>{
+        addImagesToProject(project.project_name).then((res)=>{
             setIsImgLoading(false)
             setCount(prevCount=>prevCount + 1)
-            toast.success("Images added successfully")
+            toast.success(`${res.data.images_added} images added successfully.`)
         })
         .catch(()=>{
             setIsImgLoading(false)
