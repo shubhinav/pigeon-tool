@@ -10,7 +10,7 @@ import ErrorMessage from './Components/Utils/ErrorMessage';
 import CreateProjectForm from './Pages/Dashboard/CreateProjectForm';
 import ProjectPage from './Pages/Dashboard/ProjectPage';
 import TaskPage from "./Pages/Dashboard/TaskPage"
-import AnnotationTool from "./Pages/AnnotationTool";
+import AnnotationTool from "./Pages/Tool/AnnotationTool";
 import { Routes, Route } from "react-router-dom"
 import ChangePassword from "./Pages/Account/ChangePassword";
 import ChangeUsername from "./Pages/Account/ChangeUsername"
@@ -55,7 +55,9 @@ function App() {
             {userType === "admin" && <Route path="manage" element={<ManagePage />} />}
             {userType !== "student" && <Route path="create-project" element={<CreateProjectForm />} />}
           </Route>
-          <Route path="annotation" element={<AnnotationTool/>}/>
+
+          <Route path="tool" element={<AnnotationTool/>}/>
+
           <Route path="*" element={<ErrorMessage />} />
 
         </Routes>

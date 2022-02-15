@@ -5,6 +5,7 @@ import truncateString from "../../Utils/truncateString";
 import ReactTooltip from "react-tooltip";
 import "./ProjectPageUI.css"
 import {baseUrl} from "../../ApiCrud/ApiCrud"
+import { Link } from "react-router-dom";
 
 export default function ProjectPageUI(props) {
 
@@ -77,9 +78,9 @@ export default function ProjectPageUI(props) {
                 {!isTask ? (project.registered ? <button disabled style={{ width: "40%", minWidth: "200px" }} className="m-0 btn btn-primary"><Icon icon="bi:clipboard-check" inline={true} /> Registered</button> :
                     <button style={{ width: "40%", minWidth: "200px" }} className="btn btn-primary" onClick={handleProjectRegister}>
                         {isLoading ? <Loader height="30px" width="30px" mt={0}/> : "Register"}
-                    </button>) : <button style={{ width: "40%", minWidth: "200px" }} className="btn btn-primary">
+                    </button>) : <Link to="/tool" style={{ width: "40%", minWidth: "200px" }} className="btn btn-primary">
                     Start Annotating
-                </button>}
+                </Link>}
             </div>
         </div>
     )

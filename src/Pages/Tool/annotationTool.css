@@ -1,0 +1,21 @@
+.tool-page-container{
+    height: 100vh;
+}
+.actions-container{
+    position: relative;
+    display: flex;
+    padding: 1em;
+    background-color: rgb(228, 228, 228);
+    justify-content: center;
+    align-items: center;
+}
+.back-btn-container{
+    position: absolute;
+    left: 1em;
+}
+
+iframe{
+    border: none;
+    height: 100%;
+    width: 100%;
+}
