@@ -56,7 +56,7 @@ function App() {
             {userType !== "student" && <Route path="create-project" element={<CreateProjectForm />} />}
           </Route>
 
-          <Route path="tool" element={<AnnotationTool/>}/>
+          <Route path="tool/:projectName" element={<AnnotationTool/>}/>
 
           <Route path="*" element={<ErrorMessage />} />
 

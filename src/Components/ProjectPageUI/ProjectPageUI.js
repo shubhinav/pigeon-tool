@@ -81,7 +81,7 @@ export default function ProjectPageUI(props) {
                 {!isTask ? (project.registered ? <button disabled style={{ width: "40%", minWidth: "200px" }} className="m-0 btn btn-primary"><Icon icon="bi:clipboard-check" inline={true} /> Registered</button> :
                     <button style={{ width: "40%", minWidth: "200px" }} className="btn btn-primary" onClick={handleProjectRegister}>
                         {isLoading ? <Loader height="30px" width="30px" mt={0} /> : "Register"}
-                    </button>) : <Link to="/tool" style={{ width: "40%", minWidth: "200px" }} className="btn btn-primary">
+                    </button>) : <Link to={`/tool/${project.project_name}`} style={{ width: "40%", minWidth: "200px" }} className="btn btn-primary">
                     Start Annotating
                 </Link>}
             </div>

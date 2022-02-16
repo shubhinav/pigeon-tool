@@ -108,5 +108,3 @@ export function getTaskDetails(param){
 export function getToolUrl(param){
     return api.get(`api/tool/start-annotation${param}`)
 }
-
-// tool/start-annotation
