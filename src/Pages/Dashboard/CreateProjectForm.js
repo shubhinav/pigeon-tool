@@ -19,9 +19,17 @@ export default function CreateProjectForm() {
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        let format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+        if(format.test(inputValues.name)){
+            return toast.warning("Project name should not contain any special characters.")
+        }
+        
         if (labelsArray.length === 0) {
             return toast.warning("Add at least one label to create a project.")
         }
+        
         const dataToSend = { project_name: inputValues.name, description: inputValues.description, labels: labelsArray }
         setIsLoading(true)
         createNewProject(dataToSend).then(() => {
