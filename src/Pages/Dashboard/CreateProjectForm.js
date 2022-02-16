@@ -35,12 +35,18 @@ export default function CreateProjectForm() {
     }
 
     function addLabel() {
-        setLabelsArray(prevState => {
-            return [...prevState, inputValues.label]
-        })
-        setInputValues(prevState => {
-            return { ...prevState, label: "" }
-        })
+
+        if(!labelsArray.includes(inputValues.label)){
+            setLabelsArray(prevState => {
+                return [...prevState, inputValues.label]
+            })
+            setInputValues(prevState => {
+                return { ...prevState, label: "" }
+            })
+        }
+        else{
+            return toast.warning("Can't add label. Label name must be unique for the task.")
+        }
     }
 
     function deleteLabel(index) {
