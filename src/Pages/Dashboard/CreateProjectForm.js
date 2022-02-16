@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Icon } from '@iconify/react';
 import { toast } from "react-toastify";
 import { createNewProject } from "../../ApiCrud/ApiCrud";
+import { useNavigate } from "react-router-dom";
 import Loader from "../../Components/Utils/Loader/Loader";
 
 export default function CreateProjectForm() {
@@ -9,6 +10,7 @@ export default function CreateProjectForm() {
     const [inputValues, setInputValues] = useState({ name: "", label: "", url: "", description: "" })
     const [labelsArray, setLabelsArray] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate()
 
     function handleChange(e) {
         const { value, name } = e.target
@@ -33,10 +35,10 @@ export default function CreateProjectForm() {
         const dataToSend = { project_name: inputValues.name, description: inputValues.description, labels: labelsArray }
         setIsLoading(true)
         createNewProject(dataToSend).then(() => {
-            toast.success("Project created successfully.")
-            setInputValues({ name: "", label: "", url: "", description: "" })
-            setLabelsArray([])
             setIsLoading(false)
+            toast.success("Project created successfully.")
+            navigate(`/dashboard/projects/${inputValues.name}`)
+            setLabelsArray([])
         }).catch(() => {
             setIsLoading(false)
         })

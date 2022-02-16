@@ -25,7 +25,7 @@ api.interceptors.response.use( (res) => {
             }
         }
         else{
-            toast.error("Something went wrong.")
+            toast.error("ERROR: Something went wrong.")
         }
 
     return Promise.reject(e);
@@ -106,5 +106,15 @@ export function getTaskDetails(param){
 
 // GET TOOL CONTENT
 export function getToolUrl(param){
-    return api.get(`api/tool/start-annotation${param}`)
+    return api.get(`api/tool/start-annotation/${param}`)
+}
+
+// SAVE TASK
+export function saveTask(param){
+    return api.get(`api/tool/save-task/${param}`)
+}
+
+// NEXT TASK
+export function nextTask(param){
+    return api.get(`api/tool/next/${param}`)
 }
