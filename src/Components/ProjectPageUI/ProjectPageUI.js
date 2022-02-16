@@ -22,8 +22,8 @@ export default function ProjectPageUI(props) {
                 </div>
                 {isTask &&
                     <div className="text-center">
-                        <h5 className="mb-0">{project.annotated_images}</h5>
-                        <p className="mb-0">Images Annotated</p>
+                        <h5 className="mb-0">{project.annotated_images + project.rewarded_images}</h5>
+                        <p className="mb-0">Total Annotated Images</p>
                     </div>}
             </div>
 
