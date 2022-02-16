@@ -15,12 +15,17 @@ export const api = axios.create({
 api.interceptors.response.use( (res) => {
     return res;
   }, (e) => {
-        if(e.response.status === 401){
-            toast.info("Session expired or user not logged in. Log in to continue.")
-            history.push('/')
+        if(e.response){
+            if(e.response.status === 401){
+                toast.info("Session expired or user not logged in. Log in to continue.")
+                history.push('/')
+            }
+            else{
+                e.response.data.detail ? toast.error(`ERROR: ${capitalizeFirstLetter(e.response.data.detail)}`) : toast.error("Something went wrong.")
+            }
         }
         else{
-            e.response.data.detail ? toast.error(`ERROR: ${capitalizeFirstLetter(e.response.data.detail)}`) : toast.error("There was an error.")
+            toast.error("Something went wrong.")
         }
 
     return Promise.reject(e);
@@ -98,3 +103,10 @@ export function addImagesToProject(param){
 export function getTaskDetails(param){
     return api.get(`api/project/task-details/${param}`)
 }
+
+// GET TOOL CONTENT
+export function getToolUrl(param){
+    return api.get(`api/tool/start-annotation${param}`)
+}
+
+// tool/start-annotation

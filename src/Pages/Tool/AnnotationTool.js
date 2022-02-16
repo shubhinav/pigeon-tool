@@ -1,4 +1,5 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
+import { getToolUrl } from "../../ApiCrud/ApiCrud";
 import Header from "../../Components/Header/Header"
 import ReactTooltip from 'react-tooltip';
 import { Link } from "react-router-dom"
@@ -6,6 +7,16 @@ import { Icon } from "@iconify/react";
 import "./annotationTool.css"
 
 export default function AnnotationTool() {
+
+    const [content, setContent] = useState()
+
+    useEffect(()=>{
+        getToolUrl().then((res)=>{
+            setContent(res.data)
+        }).catch(()=>{
+        })
+    },[])
+
     return (
         <div className="tool-page-container">
             <Header />
@@ -20,7 +31,7 @@ export default function AnnotationTool() {
                     <button className="btn btn-primary ml-2">Next</button>
                 </div>
             </div>
-            <iframe src="http://localhost:8080/tasks/2/jobs/2" title="W3Schools Free Online Web Tutorials"></iframe>
+            <iframe src={content} title="Tool"></iframe>
         </div>
     )
 }
