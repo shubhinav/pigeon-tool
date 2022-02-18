@@ -118,3 +118,8 @@ export function saveTask(param){
 export function nextTask(param){
     return api.get(`api/tool/next/${param}`)
 }
+
+// DOWNLOAD IMAGES
+export function downloadImages(param){
+    return api.get(`api/tool/download/${param}`)
+}

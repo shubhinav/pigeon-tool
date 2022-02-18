@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function ProjectPageUI(props) {
 
-    const { project, isTask, handleProjectRegister, handleProjectAddImages, isImgLoading, isLoading } = props
+    const { project, isTask, handleProjectRegister, handleProjectAddImages, isImgLoading, isLoading, handleImageDownload } = props
 
     const userType = localStorage.getItem('userType')
 
@@ -40,7 +40,9 @@ export default function ProjectPageUI(props) {
                             <p className="mb-1"><b>{project.annotated_images}</b> images annotated</p>
                             <p className="mb-0"><b>{project.rewarded_images}</b> rewarded images</p>
                         </div>
-                        <button className="btn btn-primary" disabled={!project.annotated_images}>
+                        <button className="btn btn-primary" 
+                                disabled={!project.annotated_images}
+                                onClick={handleImageDownload}>
                             Download Annotated Images
                         </button>
                     </div>
