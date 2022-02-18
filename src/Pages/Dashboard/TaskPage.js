@@ -24,12 +24,11 @@ export default function ProjectPage() {
 
     async function handleImageDownload() {
 
-        downloadImages().then(res=>{
-            URL.createObjectURL(res.data)
-        }).then((href)=>{
+        downloadImages().then((res)=>{
+            const data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(res.data))
             const link = document.createElement('a');
-            link.href = href;
-            link.download = "file.xlsx";
+            link.href = data;
+            link.download = "annotations.json";
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
