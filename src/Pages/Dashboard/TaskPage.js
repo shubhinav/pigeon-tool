@@ -23,7 +23,7 @@ export default function ProjectPage() {
     }, [])
 
     function handleImageDownload() {
-        downloadImages().then((res)=>{
+        downloadImages(params.projectName).then((res)=>{
             const data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(res.data))
             const link = document.createElement('a');
             link.href = data;
