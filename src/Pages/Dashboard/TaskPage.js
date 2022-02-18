@@ -24,10 +24,8 @@ export default function ProjectPage() {
 
     async function handleImageDownload() {
 
-        downloadImages().then((res)=>{
-            return res.data
-        }).then(data=>{
-            URL.createObjectURL(data)
+        downloadImages().then(res=>{
+            URL.createObjectURL(res.data)
         }).then((href)=>{
             const link = document.createElement('a');
             link.href = href;
