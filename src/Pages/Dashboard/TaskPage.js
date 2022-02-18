@@ -22,8 +22,7 @@ export default function ProjectPage() {
             })
     }, [])
 
-    async function handleImageDownload() {
-
+    function handleImageDownload() {
         downloadImages().then((res)=>{
             const data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(res.data))
             const link = document.createElement('a');
