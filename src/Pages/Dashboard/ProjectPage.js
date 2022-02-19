@@ -29,7 +29,7 @@ export default function ProjectPage(){
         registerForProject(project.project_name).then(()=>{
             setIsLoading(false)
             toast.success("Registered successfully")
-            navigate(`/dashboard/tasks/${project.projectName}`)
+            navigate(`/dashboard/tasks/${project.project_name}`)
         })
         .catch(()=>{
             setIsLoading(false)

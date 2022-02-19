@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Icon } from '@iconify/react';
 import { userLogOut } from "../../ApiCrud/ApiCrud";
 import { getUserData } from "../../ApiCrud/ApiCrud";
+// import "samajh-logo.svg"
 
 export default function Header() {
 
@@ -17,10 +18,10 @@ export default function Header() {
     return (
         <header className="px-3 py-3 main-header d-flex justify-content-between align-items-center" style={{backgroundColor: "#D8D8D8"}}>
             <div>
-            <h1 style={{fontSize: "1.5rem"}} className="mb-0">Logo</h1>
-            <p className="m-0" style={{fontSize: "0.85rem"}}>Powered by name</p>
+            <img src="/samajh-logo.svg" alt="logo"/>
+            {/* <p className="m-0" style={{fontSize: "0.85rem"}}>Powered by name</p> */}
             </div>
-            <h1 style={{fontSize: "1.5rem"}}>PigeonTool</h1>
+            <h1 style={{fontSize: "1.5rem"}}>Pigeon Tool</h1>
             <div className="btn-group">
                 <button type="button" style={{background: "transparent"}} className="px-0 btn d-flex justify-content-between align-items-center dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <Icon icon="ant-design:user-outlined" inline={true} /> 
