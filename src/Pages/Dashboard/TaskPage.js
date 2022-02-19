@@ -15,7 +15,6 @@ export default function ProjectPage() {
     useEffect(() => {
         getTaskDetails(params.projectName)
             .then(res => {
-                console.log(res.data)
                 setTask(res.data)
             }).catch(() => {
                 navigate("/dashboard/tasks")

@@ -56,7 +56,6 @@ export default function LogInForm() {
             .catch(e => {
                 if(e.response){
                     if(e.response.status === 401){
-                        console.log(e.response)
                         toast.error("ERROR: Incorrect username or password.")
                     }
                 }
