@@ -10,7 +10,7 @@ export default function SignUpForm() {
 
     let navigate = useNavigate()
 
-    const [inputValues, setInputValues] = useState({ user_name: "", email: "", password: "" })
+    const [inputValues, setInputValues] = useState({ user_name: "", email: "", password: "", confirm_password: "" })
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(()=>{
@@ -31,21 +31,33 @@ export default function SignUpForm() {
 
         setIsLoading(true)
 
-        userSignUp(inputValues)
-        .then(()=>{
-            toast.success("Signed up successfully. Log In to continue.")
+        if(inputValues.password === inputValues.confirm_password){
+            const dataToSend = {user_name: inputValues.user_name, email: inputValues.email, password: inputValues.password}
+            userSignUp(dataToSend)
+            .then(()=>{
+                toast.success("Signed up successfully. Log In to continue.")
+                setIsLoading(false)
+                navigate("/")
+            })
+            .catch((e)=>{
+                setIsLoading(false)
+                if(e.response){
+                    if(e.response.status === 400){
+                        toast.error("ERROR: Sign up failed. This email is already registered.")
+                    }
+                }
+                else{
+                    toast.error("ERROR: Something went wrong.")
+                }
+            })
+        }
+        else{
             setIsLoading(false)
-            navigate("/")
-        })
-        .catch((e)=>{
-            setIsLoading(false)
-            if(e.response.status === 400){
-                toast.error("Sign up failed. This email is already registered.")
-            }
-            else{
-                toast.error("There was an error.")
-            }
-        })
+            toast.warning("Passwords do not match. Enter again.")
+            setInputValues((prevState)=>{
+                return {...prevState, password: "", confirm_password: ""}
+            })
+        }
     }
 
     return (
@@ -83,7 +95,21 @@ export default function SignUpForm() {
                         className="form-control"
                         placeholder="Enter password"
                         name="password"
+                        minLength="8"
                         value={inputValues.password}
+                        onChange={handleChange}
+                        required />
+                    <small>*Minimun length 8 characters</small>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="sign-up-confirm-password">Confirm Password</label>
+                    <input id="sign-up-confirm-password"
+                        type="password"
+                        className="form-control"
+                        placeholder="Confirm password"
+                        name="confirm_password"
+                        minLength="8"
+                        value={inputValues.confirm_password}
                         onChange={handleChange}
                         required />
                 </div>

@@ -1,8 +1,6 @@
 import React from "react";
 import { Icon } from '@iconify/react';
 import Loader from "../Utils/Loader/Loader";
-import truncateString from "../../Utils/truncateString";
-import ReactTooltip from "react-tooltip";
 import "./ProjectPageUI.css"
 import { baseUrl } from "../../ApiCrud/ApiCrud"
 import { Link } from "react-router-dom";
@@ -22,8 +20,8 @@ export default function ProjectPageUI(props) {
                 </div>
                 {isTask &&
                     <div className="text-center">
-                        <h5 className="mb-0">{project.annotated_images + project.rewarded_images}</h5>
-                        <p className="mb-0">Total Annotated Images</p>
+                        <h5 className="mb-0">{project.annotated_images}</h5>
+                        <p className="mb-0">Images Annotated</p>
                     </div>}
             </div>
 
@@ -52,8 +50,7 @@ export default function ProjectPageUI(props) {
                 <div className="mt-4 border rounded p-3">
                     <h5>Path</h5>
                     <div className="d-md-flex justify-content-between align-items-baseline">
-                        <p data-tip={project.path} className="m-0">{truncateString(project.path)}</p>
-                        <ReactTooltip place="top" effect="solid" />
+                        <p className="m-0">{project.path}</p>
                         <button className="btn btn-primary" onClick={handleProjectAddImages}>
                             {isImgLoading ? <Loader height="30px" width="30px" mt={0} /> : "Add Images"}
                         </button>

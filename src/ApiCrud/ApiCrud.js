@@ -21,7 +21,7 @@ api.interceptors.response.use( (res) => {
                 history.push('/')
             }
             else{
-                e.response.data.detail ? toast.error(`ERROR: ${capitalizeFirstLetter(e.response.data.detail)}`) : toast.error("Something went wrong.")
+                e.response.data.detail ? toast.error(`ERROR: ${capitalizeFirstLetter(e.response.data.detail)}`) : toast.error("ERROR: Something went wrong.")
             }
         }
         else{

@@ -58,9 +58,11 @@ export default function ChangePassword() {
                             className="form-control"
                             placeholder="Enter new password"
                             name="password"
+                            minLength="8"
                             value={inputValues.password}
                             onChange={handleChange}
                             required />
+                        <small>*Minimun length 8 characters</small>
                     </div>
                     <div className="form-group">
                         <label htmlFor="ConfirNewPassword">
@@ -71,12 +73,15 @@ export default function ChangePassword() {
                             className="form-control"
                             placeholder="Re-enter new password"
                             name="confirmPassword"
+                            minLength="8"
                             value={inputValues.confirmPassword}
                             onChange={handleChange}
                             required />
                     </div>
                     {isLoading ? <Loader width="40px" height="40px" mt="2" mx="1" /> :
-                        <button style={{ display: "block" }} type="submit" className="mt-2 btn btn-primary">
+                        <button style={{ display: "block" }} 
+                                type="submit" className="mt-2 btn btn-primary" 
+                                disabled={inputValues.password.length < 8 || inputValues.confirmPassword.length <8}>
                             Change Password
                         </button>}
                 </form>

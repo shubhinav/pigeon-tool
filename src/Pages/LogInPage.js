@@ -54,12 +54,14 @@ export default function LogInForm() {
                 window.location.href = "/"
             })
             .catch(e => {
-                if(e.response.status === 401){
-                    console.log(e.response)
-                    toast.error("Incorrect username or password.")
+                if(e.response){
+                    if(e.response.status === 401){
+                        console.log(e.response)
+                        toast.error("ERROR: Incorrect username or password.")
+                    }
                 }
                 else{
-                    toast.error("There was an error.")
+                    toast.error("ERROR: Something went wrong.")
                 }
                 setIsLoading(false)
             })
@@ -87,12 +89,13 @@ export default function LogInForm() {
                     className="form-control"
                     placeholder="Enter password"
                     name="password"
+                    minLength="8"
                     value={inputValues.password}
                     onChange={handleChange}
                     required />
             </div>
             {isLoading ? <Loader width="40px" height="40px" mt="2"/> : 
-            <button style={{ display: "block" }} type="submit" className="mx-auto mt-2 btn btn-primary">
+            <button style={{ display: "block" }} type="submit" className="mx-auto mt-2 btn btn-primary" disabled={inputValues.password.length < 8}>
                 Log In
             </button>}
             <div className="mt-3 pt-3 mb-1" style={{ borderTop: "1px solid rgba(0,0,0,0.1)" }}>

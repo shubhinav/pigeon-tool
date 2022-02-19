@@ -2,9 +2,8 @@ import React, {useState, useEffect} from "react"
 import ProjectPageUI from "../../Components/ProjectPageUI/ProjectPageUI"
 import Loader from "../../Components/Utils/Loader/Loader"
 import { addImagesToProject, getProjectDetails, registerForProject } from "../../ApiCrud/ApiCrud"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
-import { useNavigate } from "react-router-dom"
 
 export default function ProjectPage(){
 
@@ -29,8 +28,8 @@ export default function ProjectPage(){
         setIsLoading(true)
         registerForProject(project.project_name).then(()=>{
             setIsLoading(false)
-            setCount(prevCount=>prevCount + 1)
             toast.success("Registered successfully")
+            navigate(`/dashboard/tasks/${project.projectName}`)
         })
         .catch(()=>{
             setIsLoading(false)
