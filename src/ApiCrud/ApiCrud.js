@@ -3,7 +3,7 @@ import { toast } from "react-toastify"
 import history from "../RouterSetup/historyObj"
 import capitalizeFirstLetter from "../Utils/capitalizeFirstLetter"
 
-export const baseUrl = 'http://localhost:8000/'
+export const baseUrl = process.env.REACT_APP_HOST_IP_ADDRESS ? process.env.REACT_APP_HOST_IP_ADDRESS : 'http://localhost:8000/'
 const tokenType = localStorage.getItem('tokenType')
 const accessToken = localStorage.getItem('accessToken')
 
