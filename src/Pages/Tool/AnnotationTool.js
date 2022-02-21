@@ -28,6 +28,7 @@ export default function AnnotationTool() {
                 setIsLoading(false)
                 navigate(`/dashboard/tasks/${params.projectName}`)
             })
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     function handleSaveTask() {

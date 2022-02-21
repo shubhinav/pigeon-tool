@@ -17,6 +17,7 @@ export default function SignUpForm() {
         if(accessToken){
             navigate("/")
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     function handleChange(e) {

@@ -20,6 +20,7 @@ export default function ProjectPage() {
             }).catch(() => {
                 navigate("/dashboard/tasks")
             })
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     function handleImageDownload() {

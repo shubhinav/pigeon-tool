@@ -22,7 +22,7 @@ export default function CreateProjectForm() {
     function handleSubmit(e) {
         e.preventDefault()
 
-        let format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        let format = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
 
         if(format.test(inputValues.name)){
             return toast.warning("Project name should not contain any special characters.")

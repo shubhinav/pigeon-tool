@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React from "react"
 import LogInForm from './Pages/LogInPage';
 import SignUpForm from './Pages/SignUpPage';
 import Account from "./Pages/Account/Account";

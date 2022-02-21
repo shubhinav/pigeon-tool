@@ -26,6 +26,7 @@ export default function LogInForm() {
                 navigate("/dashboard")
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     function handleChange(e) {

@@ -22,6 +22,7 @@ export default function ProjectPage(){
         .catch(()=>{
             navigate("/")
         })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[count])
 
     function handleProjectRegister(){

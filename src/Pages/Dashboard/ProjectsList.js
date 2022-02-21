@@ -42,6 +42,7 @@ export default function ProjectsList() {
             setFilteredProjects([])
             setIsLoading(false)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
@@ -54,6 +55,7 @@ export default function ProjectsList() {
         else {
             setFilteredProjects(allProjects)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter])
 
     const projectsList = () => {
