@@ -1,3 +1,6 @@
+# Note
+This code is the front end of Pigeon Tool. The application, ofcourse, would not work as intended witout the backend. I have uploaded it to GitHub just to showcase the code.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
